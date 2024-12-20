@@ -1,5 +1,5 @@
 package com.Simple_Blog.enums;
 
-public enum UserTypes {
+public enum AuthorType {
     ADMIN,AUTHOR,READER
 }

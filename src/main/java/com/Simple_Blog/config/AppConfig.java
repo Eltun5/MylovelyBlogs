@@ -1,10 +1,12 @@
 package com.Simple_Blog.config;
 
-import org.postgresql.ds.PGSimpleDataSource;
+import com.Simple_Blog.simpleDB.DBQueries;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 import javax.sql.DataSource;
 
@@ -22,12 +24,18 @@ public class AppConfig {
 
     @Bean
     public DataSource dataSource(){
-        PGSimpleDataSource pgSimpleDataSource= new PGSimpleDataSource();
-        pgSimpleDataSource.setUrl(url);
-        pgSimpleDataSource.setUser(user);
-        pgSimpleDataSource.setPassword(password);
-
-        return pgSimpleDataSource;
+        var DataSource= new DriverManagerDataSource();
+        DataSource.setUrl(url);
+        DataSource.setUsername(user);
+        DataSource.setPassword(password);
+        DataSource.setDriverClassName("org.postgresql.Driver");
+        return DataSource;
     }
+
+    @Bean
+    public JdbcTemplate jdbcTemplate(){
+        return new JdbcTemplate(dataSource());
+    }
+
 }
 

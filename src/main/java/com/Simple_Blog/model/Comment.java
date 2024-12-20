@@ -1,4 +1,4 @@
-package com.Simple_Blog.models;
+package com.Simple_Blog.model;
 
 import java.time.LocalDate;
 
